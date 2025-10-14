@@ -4,13 +4,18 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building ...'
-                sh 'mvn clean install'
+                dir('java-maven-app') {
+                    sh 'mvn clean install'
+                }
             }
         }
+        
         stage('test') {
             steps {
                 echo 'Testing ...'
-                sh 'mvn test'
+                dir('java-maven-app') {
+                    sh 'mvn test'
+                }
             }
         }
     }
